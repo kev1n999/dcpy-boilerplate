@@ -2,7 +2,6 @@ import os
 import discord 
 from discord import app_commands 
 from dotenv import load_dotenv 
-from core.builders.command_builder import SlashCommandBuilder
 from .handlers.command import load_commands
 from core.utils.logger import setup_logger
 

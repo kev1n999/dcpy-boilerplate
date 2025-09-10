@@ -26,18 +26,16 @@ class ComponentBuilder(discord.ui.View):
     
     def __init__(
         self, 
-        component: Union[List[discord.Component], discord.Component], 
+        components: Union[List[discord.ui.Item], discord.ui.Item], 
         persistent: bool=None
     ) -> None:
-        super().__init__(timeout=None if persistent else 180)
+        super().__init__(
+            timeout=None if persistent else 180
+        )
         
-        if component is None:
-            raise TypeError("Nenhum componente(Button, SelectMenu, Modal) foi passado!")
+        if isinstance(components, list):
+            for component in components:
+                self.add_item(component)
         
-        if isinstance(component, list):
-            for c in component:
-                if isinstance(c, discord.Component):
-                    raise TypeError(f"Erro: Não é possível adicionar uma lista de componentes do tipo {type(c)}!")
-                self.add_item(c)
-        else:
-            self.add_item(component)
+        elif isinstance(components, discord.ui.Item):
+            self.add_item(components)
