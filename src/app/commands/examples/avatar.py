@@ -1,6 +1,6 @@
 import discord
-from core.builders.command_builder import SlashCommandBuilder
-from ...components.selects.example_select import selected_user 
+from src.core.builders.command_builder import SlashCommandBuilder
+from src.app.components.selects.example_select import selected_user
 
 class AvatarUserCOmmand(SlashCommandBuilder):
     def __init__(self, tree) -> None:
@@ -12,12 +12,12 @@ class AvatarUserCOmmand(SlashCommandBuilder):
 
     async def callback(self, interaction: discord.Interaction, user: discord.User=None) -> None:
         if user is None:
-            user = interaction.user 
-        
-        avatar = user.display_avatar 
+            user = interaction.user
+
+        avatar = user.display_avatar
         embed = discord.Embed(
             title=f"🖼 Avatar from {user.name}",
-            color=discord.Colour.blue() 
+            color=discord.Colour.blue()
         )
         embed.set_image(url=avatar.url)
 

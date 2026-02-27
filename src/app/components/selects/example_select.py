@@ -1,8 +1,8 @@
-import discord 
-from core.builders.select_builder import (
-    SelectMenuBuilder, 
-    SelectOptionBuilder, 
-    SelectUserBuilder, 
+import discord
+from src.core.builders.select_builder import (
+    SelectMenuBuilder,
+    SelectOptionBuilder,
+    SelectUserBuilder,
     SelectChannelBuilder,
     SelectRoleBuilder
 )
@@ -10,10 +10,10 @@ from core.builders.component_builder import ComponentBuilder
 
 async def returns_user_avatar(interaction: discord.Interaction, select: discord.ui.Select) -> None:
     user = select.values[0]
-    avatar = user.display_avatar 
+    avatar = user.display_avatar
     embed = discord.Embed(
         title=f"🖼 Avatar from {user.name}",
-        color=discord.Colour.blue() 
+        color=discord.Colour.blue()
     )
     embed.set_image(url=avatar.url)
 

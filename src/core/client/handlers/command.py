@@ -1,8 +1,8 @@
-from importlib import import_module 
-from pathlib import Path 
-from core.builders.command_builder import SlashCommandBuilder
+from importlib import import_module
+from pathlib import Path
+from src.core.builders.command_builder import SlashCommandBuilder
 from discord.app_commands import CommandTree
-from core.utils.logger import setup_logger
+from src.core.utils.logger import setup_logger
 
 # Configura o logger para este módulo
 logger = setup_logger(__name__)
@@ -10,7 +10,7 @@ logger = setup_logger(__name__)
 def load_commands(tree: CommandTree):
     """
     Carrega todos os comandos registrados nas subpastas de app/commands.
-    
+
     Args:
         tree (CommandTree): Árvore de comandos do Discord onde os comandos serão registrados.
     """
@@ -19,7 +19,7 @@ def load_commands(tree: CommandTree):
 
     for folder_path in root.iterdir():
         if not folder_path.is_dir():
-            continue 
+            continue
 
         logger.debug(f"Explorando pasta: {folder_path.name}")
         for file_path in folder_path.glob("*.py"):
@@ -33,7 +33,7 @@ def load_commands(tree: CommandTree):
                 module = import_module(module_name)
             except Exception as err:
                 logger.error(f"Falha ao importar {module_name}: {err}", exc_info=True)
-                continue  
+                continue
 
             for obj in module.__dict__.values():
                 if (

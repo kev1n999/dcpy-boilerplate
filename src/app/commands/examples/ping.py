@@ -1,6 +1,6 @@
-import discord 
-from core.builders.command_builder import SlashCommandBuilder
-from ...components.buttons.example_button import button 
+import discord
+from src.core.builders.command_builder import SlashCommandBuilder
+from src.app.components.buttons.example_button import button
 
 class PingCommand(SlashCommandBuilder):
     def __init__(self, tree) -> None:
