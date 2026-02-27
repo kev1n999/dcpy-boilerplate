@@ -1,11 +1,8 @@
-# Template for bot's with Python and discord.py
-
-(em desenvolvimento...)
+# DC-Boilerplate
 
 #### Esse projeto é uma base/ambiente que visa acelerar e abstrair o desenvolvimento de bots para discord utilizando a linguagem de programação Python, baseado principalmente na biblioteca [discord.py](https://discordpy.readthedocs.io/en/stable/), de forma estruturada e organizada.
 
-### Os builders disponíveis são:
-
+---
 
 | Builder                | Função                                                                                                                   |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -20,51 +17,32 @@
 | `SelectRoleBuilder`    | **Responsável pela criação de um SelectMenu de roles/cargos do servidor (Herda de discord.ui.RoleSelect).**             |
 | `SelectChannelBuilder` | **Responsável pela criação de um SelectMenu de canais do servidor (Herda de discord.ui.ChannelSelect).**                |
 
-# ⚙- Configurações essenciais
-
-* Crie um arquivo .env na raíz do projeto e armazene o token do seu bot nele, dessa forma:
+# Configurações essenciais
+> * Crie um arquivo .env na raíz do projeto e armazene o token do seu bot nele, dessa forma:
   ````
   BOT_TOKEN=insira o token do bot aqui
   ````
 
-# 📂- Estrutura
+---
 
-````
-DiscordBotBase:
-├── src/
-│   ├── app/
-│   │   ├── commands/
-│   │   │   ├── examples/
-│   │   │   ├── utils/
-│   │   │   ├── fun/
-│   │   │   ├── moderation/
-│   │   │   └── __init__.py
-│   │   ├── components/
-│   │   │   ├── selects/
-│   │   │   ├── buttons/
-│   │   │   ├── modals/
-│   │   │   └── __init__.py
-````
+## Commands
+> * Nesta pasta ficarão armazenados os comandos do bot, que serão divididos em subpastas categóricas, como por padrão: `utils, fun, moderation`(Você pode criar subpastas diferentes, conforme seu gosto).
+> * Como desenvolver?
+> * **Defina uma categoria/subpasta(utils, fun, moderation etc) para o comando que você irá criar, e crie um arquivo** `nome_do_comando.py` **dentro dela, dentro desse arquivo/código ficará o desenvolvimento e a lógica do comando.**
 
-## 🤖 - Commands
+## Components
+> * Nesta pasta ficarão armazenados os componentes desenvolvidos, que serão dividos preferencialmente em subpastas categóricas como: `selects, buttons, modals`. Aqui ficará apenas a criação de componentes e a lógica de cada um deles, que futuramente podem ser importados no arquivo/código de um comando específico para serem utilizados.
+> * **Como desenvolver?**
+>  * Defina uma categoria/subpasta(selects, buttons, modals):
+>  * Escolha a pasta selects se for criar componentes do tipo `SelectMenuBuilder`
+>  * Escolha a pasta modals se for criar componentes do tipo `ModalBuilder`
+>  * Escolha a pasta buttons se for criar componentes do tipo `ButtonBuilder`
 
-* Nesta pasta ficarão armazenados os comandos do bot, que serão divididos em subpastas categóricas, como por padrão: `utils, fun, moderation`(Você pode criar subpastas diferentes, conforme seu gosto).
-* Como desenvolver?
-  **Defina uma categoria/subpasta(utils, fun, moderation etc) para o comando que você irá criar, e crie um arquivo** `nome_do_comando.py` **dentro dela, dentro desse arquivo/código ficará o desenvolvimento e a lógica do comando.**
+> #### Por fim, crie o arquivo/código `nome_do_componente.py`, e desenvolva o componente dentro dele. O componente pode ser importado futuramente em um arquivo/código de comando para sua utilização, veja exemplos mais claros abaixo.
 
-## 🛠 - Components
+---
 
-* Nesta pasta ficarão armazenados os componentes desenvolvidos, que serão dividos preferencialmente em subpastas categóricas como: `selects, buttons, modals`. Aqui ficará apenas a criação de componentes e a lógica de cada um deles, que futuramente podem ser importados no arquivo/código de um comando específico para serem utilizados.
-* Como desenvolver?
-  Defina uma categoria/subpasta(selects, buttons, modals):
-
-  * Escolha a pasta selects se for criar componentes do tipo `SelectMenuBuilder`
-  * Escolha a pasta modals se for criar componentes do tipo `ModalBuilder`
-  * Escolha a pasta buttons se for criar componentes do tipo `ButtonBuilder`
-
-  #### Por fim, crie o arquivo/código `nome_do_componente.py`, e desenvolva o componente dentro dele. O componente pode ser importado futuramente em um arquivo/código de comando para sua utilização, veja exemplos mais claros abaixo.
-
-# ❓ - Como criar os comandos?
+# Como criar os comandos?
 
 Os comandos ficarão organizados em subpastas dentro da pasta `app/commands` do projeto, como por exemplo:
 
@@ -91,8 +69,9 @@ class ExampleCommandPing(SlashCommandBuilder):
         )
 ````
 
+---
 
-# 💡 - Como criar e enviar componentes com comandos?
+# Como criar e enviar componentes com comandos?
 
 Os componentes podem ser criados usando os builders e enviados junto com as respostas dos comandos. Exemplo básico:
 
@@ -128,20 +107,4 @@ class ExampleCommand(SlashCommandBuilder):
         )
 ```
 
-### Tipos de Componentes Disponíveis:
-
-1. **Botões** (`ButtonBuilder`):
-
-   - Botões interativos com diferentes estilos
-   - Útil para ações simples
-2. **Select Menus** (`SelectMenuBuilder`):
-
-   - Menus dropdown com opções personalizadas
-   - Suporta seleção de usuários, cargos e canais
-3. **Modais** (`ModalBuilder`):
-
-   - Formulários com campos de texto
-   - Ideal para coletar informações do usuário
-   - **Dica:** `ModalBuilder não deve ser adicionado à um ComponentBuilder, envie modais a partir de:  interaction.response.send_modal(modal)`
-
-Todos os builders estão disponíveis em `src/core/builders/` e seguem o mesmo padrão de uso.
+---
